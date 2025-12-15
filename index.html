@@ -3,178 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rubin Vase Illusion</title>
-    <style>
-        /*
-        * CSS to create the Rubin Vase Illusion
-        * using a combination of shapes and absolute positioning.
-        */
-        :root {
-            /* Define colors for easy modification */
-            --background-color: #f0f0f0; /* Light background for the overall page */
-            --figure-color: #333333;    /* The color of the 'faces' (foreground) */
-            --ground-color: #ffffff;    /* The color of the 'vase' (background) */
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: var(--background-color);
-            font-family: sans-serif;
-        }
-
-        /* --- Main Layout Container --- */
-        .container {
-            width: 800px;
-            height: 500px;
-            display: flex;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            position: relative; /* Needed for positioning the absolute 'vase' */
-            background-color: var(--figure-color); /* Default background color (the faces) */
-        }
-
-        /* --- Left and Right Content Blocks (Sidebars) --- */
-        .left-block, .right-block {
-            flex: 1; /* Takes up equal space on the sides */
-            padding: 20px;
-            color: var(--ground-color);
-            background-color: var(--figure-color);
-            z-index: 2; /* Ensures content is above the vase if it overlaps */
-        }
-
-        /* --- The Illusory Vase/Faces Block --- */
-        .center-block {
-            flex: 2; /* Takes up twice the space of the sidebars */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 1; /* Lower z-index for the main illusion area */
-            background-color: var(--ground-color); /* The vase color */
-        }
-
-        /* --- The VASE Illusion (The 'Ground' area in the center) --- */
-        /* This element creates the negative space that looks like a vase. */
-        .vase-illusion {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--figure-color); /* The faces color */
-            z-index: 0; /* Ensures the vase shape is behind the center-block's content */
-            clip-path: polygon(
-                /* Defines the top and bottom edge of the faces */
-                0% 0%,
-                100% 0%,
-                100% 100%,
-                0% 100%,
-
-                /* This inner path defines the VASE shape (cuts out the faces color) */
-                /* The curve is simulated by a series of small, angled lines */
-                50% 100%, /* Bottom middle point */
-                calc(50% + 50px) 95%,
-                calc(50% + 100px) 70%,
-                calc(50% + 120px) 30%,
-                calc(50% + 100px) 5%,
-                50% 0%, /* Top middle point */
-                calc(50% - 100px) 5%,
-                calc(50% - 120px) 30%,
-                calc(50% - 100px) 70%,
-                calc(50% - 50px) 95%
-
-            );
-            /* Uncomment the line below to help visualize the clip-path: */
-            /* border: 2px solid red; */
-        }
-
-        /* --- Content for the Center Block (The actual 'Vase' area) --- */
-        .vase-content {
-            background-color: var(--ground-color); /* Matches the vase background */
-            width: 50%;
-            height: 90%;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--figure-color);
-            padding: 20px;
-        }
-
-        /* --- Content for the Faces (Foreground) --- */
-        .face-content-left, .face-content-right {
-            position: absolute;
-            color: var(--ground-color); /* Text color contrasts with face color */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            width: 20%;
-            height: 90%;
-            padding: 20px;
-            z-index: 2; /* Above the vase-illusion */
-            top: 5%;
-        }
-
-        .face-content-left {
-            left: 10%;
-        }
-
-        .face-content-right {
-            right: 10%;
-        }
-
-
-        /* Style the text inside the blocks */
-        h2 { margin-top: 0; }
-        p { margin-bottom: 0; font-size: 0.9em; }
-
-    </style>
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <div class="container">
-
-        <div class="left-block">
-            <h2>Left Sidebar</h2>
-            <p>This is a separate, persistent content area that is part of the 'faces' color.</p>
-            <p>Content goes here.</p>
-        </div>
-
-        <div class="center-block">
-
-            <div class="vase-illusion">
-                <div class="face-content-left">
-                    <p>Figure/Face Content</p>
-                    <small>Left Side</small>
+        <div class="content">
+            <section class="section experience expandable">
+                <h2>Experience</h2>
+                <div class="experience-item">
+                    <h3>Teaching Assistant</h3>
+                    <p class="date">September 2022 - Present</p>
+                    <p>University of Massachusetts Lowell, Text Machine Lab</p>
+                    <p>Teaching computing to students while generating code using LLMs. Managing instruction prompting and task dividing to achieve maximum efficiency of generation. Tracking typical LLM artifacts and bugs injected into code during generation. Debugging via reverse engineering of generated code and using LLM as an assistant. Memory leak search and resolution.</p>
                 </div>
-                <div class="face-content-right">
-                    <p>Figure/Face Content</p>
-                    <small>Right Side</small>
+                <div class="experience-item">
+                    <h3>Research Assistant</h3>
+                    <p class="date">January 2021 - May 2022</p>
+                    <p>University of Massachusetts Lowell, Text Machine Lab</p>
+                    <p>Conducted research in Natural Language Processing focusing on information theory applications in language models, mathematical word problems as reasoning tools, and emergent abilities in reduced-scale generative models. Collaborated on traffic analysis projects using LLMs for report generation and data anonymization.</p>
                 </div>
-            </div>
+            </section>
 
-            <div class="vase-content">
-                <h2>The Vase (Ground)</h2>
-                <p>This is the main **center content** area.</p>
-                <p>If you focus on this area, it appears as a vase.</p>
-            </div>
+            <section class="section profile">
+                <div class="profile-photo">AK</div>
+                <h1>Anton Kovalev</h1>
+                <p>PhD Research Assistant in NLP</p>
+                <div class="skills-tags">
+                    <span class="tag">#DeepLearning</span>
+                    <span class="tag">#NLP</span>
+                    <span class="tag">#LLMs</span>
+                    <span class="tag">#Python</span>
+                    <span class="tag">#PyTorch</span>
+                    <span class="tag">#TensorFlow</span>
+                    <span class="tag">#Transformers</span>
+                    <span class="tag">#PromptEngineering</span>
+                    <span class="tag">#MachineLearning</span>
+                    <span class="tag">#DataScience</span>
+                    <span class="tag">#Research</span>
+                    <span class="tag">#Teaching</span>
+                </div>
+            </section>
 
+            <section class="section research expandable">
+                <h2>Research</h2>
+                <div class="project-item">
+                    <h3>Entropy-Based Approach to Measuring Information in Text Sequences</h3>
+                    <p>Leveraging Shannon entropy and Hartley's information amount metrics to understand knowledge perception by models at different training checkpoints. Detecting flawed dataset parts based on information perceived during pre-training and curriculum learning resolution.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Mathematical Word Problems in NLP</h3>
+                    <p>Using MWPs as a tool to observe and detect LLMs' reasoning abilities. Employing mathematical word problems as a simple way to check correctness of general reasoning not bound to mathematical equations.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Emergent Abilities in Reduced-Scale Generative Language Models</h3>
+                    <p>Collaboration project working with restricted vocabulary datasets similar to a child's speech. Mitigating lack of long sequence spans after filtration to study emergent capabilities in smaller models.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Road Traffic Analysis Using LLMs</h3>
+                    <p>Analysis of highway ramp turn reports using large language models. Data anonymization and generation of synthetic reports based on real censored reports. Traffic analysis on night work segments based on video surveillance and radar data.</p>
+                </div>
+            </section>
         </div>
-
-        <div class="right-block">
-            <h2>Right Sidebar</h2>
-            <p>This is a separate, persistent content area that is part of the 'faces' color.</p>
-            <p>Content goes here.</p>
-        </div>
-
     </div>
 
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Anton Kovalev. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/anton-kovalev" target="_blank">LinkedIn</a>
+                <a href="mailto:antonkovalev90@yahoo.com">antonkovalev90@yahoo.com</a>
+                <a href="tel:+16465916329">+1 (646) 591-6329</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const expandableSections = document.querySelectorAll('.section.expandable');
+        const content = document.querySelector('.content');
+
+        expandableSections.forEach(section => {
+            section.addEventListener('click', (e) => {
+                // Prevent clicks on links from toggling
+                if (e.target.tagName === 'A') return;
+
+                const isExpanded = section.classList.contains('expanded');
+
+                // Close all sections first
+                expandableSections.forEach(s => s.classList.remove('expanded'));
+                content.classList.remove('has-expanded');
+
+                // If it wasn't expanded, expand it
+                if (!isExpanded) {
+                    section.classList.add('expanded');
+                    content.classList.add('has-expanded');
+                }
+            });
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                expandableSections.forEach(s => s.classList.remove('expanded'));
+                content.classList.remove('has-expanded');
+            }
+        });
+    </script>
 </body>
 </html>
