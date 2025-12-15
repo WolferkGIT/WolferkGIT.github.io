@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubin Vase Illusion</title>
+    <style>
+        /*
+        * CSS to create the Rubin Vase Illusion
+        * using a combination of shapes and absolute positioning.
+        */
+        :root {
+            /* Define colors for easy modification */
+            --background-color: #f0f0f0; /* Light background for the overall page */
+            --figure-color: #333333;    /* The color of the 'faces' (foreground) */
+            --ground-color: #ffffff;    /* The color of the 'vase' (background) */
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--background-color);
+            font-family: sans-serif;
+        }
+
+        /* --- Main Layout Container --- */
+        .container {
+            width: 800px;
+            height: 500px;
+            display: flex;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative; /* Needed for positioning the absolute 'vase' */
+            background-color: var(--figure-color); /* Default background color (the faces) */
+        }
+
+        /* --- Left and Right Content Blocks (Sidebars) --- */
+        .left-block, .right-block {
+            flex: 1; /* Takes up equal space on the sides */
+            padding: 20px;
+            color: var(--ground-color);
+            background-color: var(--figure-color);
+            z-index: 2; /* Ensures content is above the vase if it overlaps */
+        }
+
+        /* --- The Illusory Vase/Faces Block --- */
+        .center-block {
+            flex: 2; /* Takes up twice the space of the sidebars */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1; /* Lower z-index for the main illusion area */
+            background-color: var(--ground-color); /* The vase color */
+        }
+
+        /* --- The VASE Illusion (The 'Ground' area in the center) --- */
+        /* This element creates the negative space that looks like a vase. */
+        .vase-illusion {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--figure-color); /* The faces color */
+            z-index: 0; /* Ensures the vase shape is behind the center-block's content */
+            clip-path: polygon(
+                /* Defines the top and bottom edge of the faces */
+                0% 0%,
+                100% 0%,
+                100% 100%,
+                0% 100%,
+
+                /* This inner path defines the VASE shape (cuts out the faces color) */
+                /* The curve is simulated by a series of small, angled lines */
+                50% 100%, /* Bottom middle point */
+                calc(50% + 50px) 95%,
+                calc(50% + 100px) 70%,
+                calc(50% + 120px) 30%,
+                calc(50% + 100px) 5%,
+                50% 0%, /* Top middle point */
+                calc(50% - 100px) 5%,
+                calc(50% - 120px) 30%,
+                calc(50% - 100px) 70%,
+                calc(50% - 50px) 95%
+
+            );
+            /* Uncomment the line below to help visualize the clip-path: */
+            /* border: 2px solid red; */
+        }
+
+        /* --- Content for the Center Block (The actual 'Vase' area) --- */
+        .vase-content {
+            background-color: var(--ground-color); /* Matches the vase background */
+            width: 50%;
+            height: 90%;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--figure-color);
+            padding: 20px;
+        }
+
+        /* --- Content for the Faces (Foreground) --- */
+        .face-content-left, .face-content-right {
+            position: absolute;
+            color: var(--ground-color); /* Text color contrasts with face color */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 20%;
+            height: 90%;
+            padding: 20px;
+            z-index: 2; /* Above the vase-illusion */
+            top: 5%;
+        }
+
+        .face-content-left {
+            left: 10%;
+        }
+
+        .face-content-right {
+            right: 10%;
+        }
+
+
+        /* Style the text inside the blocks */
+        h2 { margin-top: 0; }
+        p { margin-bottom: 0; font-size: 0.9em; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="left-block">
+            <h2>Left Sidebar</h2>
+            <p>This is a separate, persistent content area that is part of the 'faces' color.</p>
+            <p>Content goes here.</p>
+        </div>
+
+        <div class="center-block">
+
+            <div class="vase-illusion">
+                <div class="face-content-left">
+                    <p>Figure/Face Content</p>
+                    <small>Left Side</small>
+                </div>
+                <div class="face-content-right">
+                    <p>Figure/Face Content</p>
+                    <small>Right Side</small>
+                </div>
+            </div>
+
+            <div class="vase-content">
+                <h2>The Vase (Ground)</h2>
+                <p>This is the main **center content** area.</p>
+                <p>If you focus on this area, it appears as a vase.</p>
+            </div>
+
+        </div>
+
+        <div class="right-block">
+            <h2>Right Sidebar</h2>
+            <p>This is a separate, persistent content area that is part of the 'faces' color.</p>
+            <p>Content goes here.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
